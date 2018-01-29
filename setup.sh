@@ -8,7 +8,7 @@ sudo apt-get update && sudo apt-get upgrade
 echo "Installing apps"
 sudo apt-get install -y git git-core curl zsh nmap htop iftop \
 ubuntu-restricted-extras gimp vlc browser-plugin-vlc vim \
-libappindicator1 fonts-powerline dconf-cli
+libappindicator1 fonts-powerline dconf-cli diodon
 
 # install virtual env
 echo "Installing python virtual environment"
@@ -25,7 +25,7 @@ wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.de
 
 # install chrome
 echo "Installing Chrome"
-# sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google-chrome-stable_current_amd64.deb
 
 # installing oh-my-zsh
 echo "Installing oh-my-zsh"
