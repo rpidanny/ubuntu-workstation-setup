@@ -28,9 +28,11 @@ echo "Installing Chrome"
 sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google-chrome-stable_current_amd64.deb
 
 # downloading skype
+echo "Downloading Skype"
 wget -c https://repo.skype.com/latest/skypeforlinux-64.deb
 
 # install skype
+echo "Installing Skype"
 sudo dpkg -i skypeforlinux-64.deb && rm skypeforlinux-64.deb
 
 # installing oh-my-zsh
