@@ -5,8 +5,7 @@ sudo apt-get install linux-headers-$(uname -r)
 # install cuda
 echo "Installing cuda"
 sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
-sudo apt-get update
-sudo apt-get install cuda
+sudo apt-get update && sudo apt-get install cuda
 
 # install cuda performance upgrade
 sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64.deb
