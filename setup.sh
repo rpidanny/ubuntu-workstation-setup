@@ -8,7 +8,8 @@ sudo apt-get update && sudo apt-get upgrade
 echo "Installing apps"
 sudo apt-get install -y git git-core curl zsh nmap htop iftop \
 ubuntu-restricted-extras gimp vlc browser-plugin-vlc vim \
-libappindicator1 fonts-powerline dconf-cli diodon pylint python-pip python3-pip
+libappindicator1 fonts-powerline dconf-cli diodon pylint python-pip python3-pip \
+qbittorrent
 
 # update pip
 sudo pip install --upgrade pip
