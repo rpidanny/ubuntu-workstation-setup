@@ -8,7 +8,7 @@ sudo apt-get update && sudo apt-get upgrade
 echo "Installing apps"
 sudo apt-get install -y git git-core curl zsh nmap htop iftop \
 ubuntu-restricted-extras gimp vlc browser-plugin-vlc vim \
-libappindicator1 fonts-powerline dconf-cli diodon
+libappindicator1 fonts-powerline dconf-cli diodon pylint
 
 # install virtual env
 echo "Installing python virtual environment"
@@ -18,6 +18,9 @@ sudo pip install virtualenv && sudo pip3 install virtualenv
 echo "Installing node.js"
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+# installing eslint, http-server
+sudo npm i -g eslint http-server
 
 # download chrome
 echo "Downloading Chrome"
