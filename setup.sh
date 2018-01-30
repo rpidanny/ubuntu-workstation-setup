@@ -27,6 +27,12 @@ wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.de
 echo "Installing Chrome"
 sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google-chrome-stable_current_amd64.deb
 
+# downloading skype
+wget -c https://repo.skype.com/latest/skypeforlinux-64.deb
+
+# install skype
+sudo dpkg -i skypeforlinux-64.deb && rm skypeforlinux-64.deb
+
 # installing oh-my-zsh
 echo "Installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
