@@ -10,6 +10,10 @@ sudo apt-get install -y git git-core curl zsh nmap htop iftop \
 ubuntu-restricted-extras gimp vlc browser-plugin-vlc vim \
 libappindicator1 fonts-powerline dconf-cli diodon pylint python-pip python3-pip
 
+# update pip
+sudo pip install --upgrade pip
+sudo pip3 install --upgrade pip
+
 # install virtual env
 echo "Installing python virtual environment"
 sudo pip install virtualenv && sudo pip3 install virtualenv
