@@ -32,7 +32,7 @@ install_desktop () {
   # install desktop apps
   echo "Installing Desktop Apps"
   sudo apt-get install -y ubuntu-restricted-extras gimp vlc browser-plugin-vlc \
-  libappindicator1 fonts-powerline dconf-cli diodon pylint qbittorrent
+  libappindicator1 dconf-cli diodon pylint qbittorrent
 
   # installing eslint
   sudo npm i -g eslint
@@ -59,6 +59,12 @@ restore_configs () {
   echo "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+  # installing zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+  # installing zsh-syntax
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
   # Getting zsh config
   echo "Restoring .zshrc"
   wget https://raw.githubusercontent.com/rpidanny/dotfiles/master/.zshrc -O $HOME/.zshrc
@@ -69,7 +75,11 @@ restore_configs () {
 
   # Setting zsh as default
   echo "Setting zsh as default"
-  chsh -s $(which zsh)                                             
+  chsh -s $(which zsh)
+
+  # installing theme
+  echo "Installing powerline theme"
+  sudo apt-get install -y fonts-powerline
 }
 
 option="$1"
