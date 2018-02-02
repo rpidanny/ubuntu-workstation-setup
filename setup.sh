@@ -9,7 +9,7 @@ echo "Installing apps"
 sudo apt-get install -y git git-core curl zsh nmap htop iftop \
 ubuntu-restricted-extras gimp vlc browser-plugin-vlc vim \
 libappindicator1 fonts-powerline dconf-cli diodon pylint python-pip python3-pip \
-qbittorrent
+qbittorrent tmux
 
 # update pip
 sudo pip install --upgrade pip
@@ -46,4 +46,12 @@ sudo dpkg -i skypeforlinux-64.deb && rm skypeforlinux-64.deb
 # installing oh-my-zsh
 echo "Installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Getting zsh config
+wget https://raw.githubusercontent.com/rpidanny/dotfiles/master/.zshrc -O $HOME/.zshrc
+
+# Getting tmux config
+wget https://raw.githubusercontent.com/rpidanny/dotfiles/master/.tmux.conf -O $HOME/.tmux.conf
+
+# Setting zsh as default
 chsh -s $(which zsh)
