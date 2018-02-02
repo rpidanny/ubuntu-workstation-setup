@@ -1,57 +1,93 @@
 #!/bin/bash
 
-# updating apt-get
-echo "Updating apt-get"
-sudo apt-get update && sudo apt-get upgrade
+install_commons () {
+  # updating apt-get
+  echo "Updating apt-get"
+  sudo apt-get update && sudo apt-get upgrade
 
-# install git, curl, nmap
-echo "Installing apps"
-sudo apt-get install -y git git-core curl zsh nmap htop iftop \
-ubuntu-restricted-extras gimp vlc browser-plugin-vlc vim \
-libappindicator1 fonts-powerline dconf-cli diodon pylint python-pip python3-pip \
-qbittorrent tmux
+  # install apps
+  echo "Installing apps"
+  sudo apt-get install -y git git-core curl zsh nmap htop iftop \
+  vim python-pip python3-pip tmux
 
-# update pip
-sudo pip install --upgrade pip
-sudo pip3 install --upgrade pip
+  # update pip
+  echo "Upgrading pip"
+  sudo pip install --upgrade pip
+  sudo pip3 install --upgrade pip
 
-# install virtual env
-echo "Installing python virtual environment"
-sudo pip install virtualenv && sudo pip3 install virtualenv
+  # install virtual env
+  echo "Installing python virtual environment"
+  sudo pip install virtualenv && sudo pip3 install virtualenv
 
-# install nodejs
-echo "Installing node.js"
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install -y nodejs
+  # install nodejs
+  echo "Installing node.js"
+  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+  sudo apt-get install -y nodejs
 
-# installing eslint, http-server
-sudo npm i -g eslint http-server
+  # installing http-server
+  sudo npm i -g http-server
+}
 
-# download chrome
-echo "Downloading Chrome"
-wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+install_desktop () {
+  # install desktop apps
+  echo "Installing Desktop Apps"
+  sudo apt-get install -y ubuntu-restricted-extras gimp vlc browser-plugin-vlc \
+  libappindicator1 fonts-powerline dconf-cli diodon pylint qbittorrent
 
-# install chrome
-echo "Installing Chrome"
-sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google-chrome-stable_current_amd64.deb
+  # installing eslint
+  sudo npm i -g eslint
 
-# downloading skype
-echo "Downloading Skype"
-wget -c https://repo.skype.com/latest/skypeforlinux-64.deb
+  # download chrome
+  echo "Downloading Chrome"
+  wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-# install skype
-echo "Installing Skype"
-sudo dpkg -i skypeforlinux-64.deb && rm skypeforlinux-64.deb
+  # install chrome
+  echo "Installing Chrome"
+  sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google-chrome-stable_current_amd64.deb
 
-# installing oh-my-zsh
-echo "Installing oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  # downloading skype
+  echo "Downloading Skype"
+  wget -c https://repo.skype.com/latest/skypeforlinux-64.deb
 
-# Getting zsh config
-wget https://raw.githubusercontent.com/rpidanny/dotfiles/master/.zshrc -O $HOME/.zshrc
+  # install skype
+  echo "Installing Skype"
+  sudo dpkg -i skypeforlinux-64.deb && rm skypeforlinux-64.deb
+}
 
-# Getting tmux config
-wget https://raw.githubusercontent.com/rpidanny/dotfiles/master/.tmux.conf -O $HOME/.tmux.conf
+restore_configs () {
+  # installing oh-my-zsh
+  echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# Setting zsh as default
-chsh -s $(which zsh)
+  # Getting zsh config
+  echo "Restoring .zshrc"
+  wget https://raw.githubusercontent.com/rpidanny/dotfiles/master/.zshrc -O $HOME/.zshrc
+
+  # Getting tmux config
+  echo "Restoring .tmux.conf"
+  wget https://raw.githubusercontent.com/rpidanny/dotfiles/master/.tmux.conf -O $HOME/.tmux.conf
+
+  # Setting zsh as default
+  echo "Setting zsh as default"
+  chsh -s $(which zsh)                                             
+}
+
+option="$1"
+
+if [ $# -ne 1 ]; then
+  printf "Usage: $0 <server/desktop>"
+else
+  case "$option" in
+    "server") 
+      install_commons
+      restore_configs
+      ;;
+    "desktop")
+      install_commons
+      install_desktop
+      restore_configs
+      ;;
+    *)  printf "Invalid argument!\nUsage: $0 <server/desktop>" >&2
+        exit 1 ;;
+  esac
+fi
