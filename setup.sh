@@ -39,7 +39,7 @@ install_desktop () {
   # install desktop apps
   echo_green "Installing Desktop Apps"
   sudo apt-get install -y ubuntu-restricted-extras gimp vlc browser-plugin-vlc \
-  libappindicator1 dconf-cli diodon pylint qbittorrent
+  libappindicator1 dconf-cli diodon pylint qbittorrent exfat-fuse exfat-utils
 
   # installing eslint
   sudo npm i -g eslint
